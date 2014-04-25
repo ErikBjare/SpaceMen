@@ -89,20 +89,17 @@ func handler(ws *websocket.Conn) {
             conn.close()
             return
         }
-        log.Println(recv);
         err := json.Unmarshal([]byte(recv), &clientMessage)
         if err != nil {
             log.Println("Error when trying to pack up JSON")
             conn.close()
             return
         }
-        log.Println(clientMessage);
         send_msg(ws, clientMessage)
     }
 }
 
 func send_msg(ws *websocket.Conn, msg ClientMessage) {
-    log.Println(msg)
     b, err := json.Marshal(msg);
     log.Println(string(b));
     if err != nil {
