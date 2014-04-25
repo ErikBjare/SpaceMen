@@ -2,3 +2,18 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+input[type="text"]#chat {
+    position: absolute;
+    bottom: 2px;
+    left: 99px;
+    background-color: rgba(0,0,0,0);
+    color: #FFF;
+    border: 1px solid #FFF;
+    padding: 2px;
+    border-radius: 3px;
+    width: 250px;
+}
+
+    #chat:focus {
+    }
