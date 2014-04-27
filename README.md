@@ -4,8 +4,9 @@ A space adventure.
 
 # About
 
+Decided to try out the Phaser framework and do a small game with a chat implemented with Websockets. Game uses the Phaser framework, chatserver is written in Go using Websockets.
 
-# For Developers
+The performance of canvas was disappointing and since my video drivers don't support WebGL this project will probably be abandoned for now. The background is pretty cool though, and the faked depth will probably be used in a future project.
 
 ## Code
 
