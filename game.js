@@ -212,14 +212,27 @@ var conn = {
     sock: null,
 
     connect: function() {
+        console.log("Trying to open websocket");
         conn.sock = new WebSocket("ws://" + ws_addr);
-        conn.sock.onmessage = conn.recv_msg;
         conn.sock.onopen = conn.on_open;
+        conn.sock.onclose = conn.on_close;
+        conn.sock.onmessage = conn.recv_msg;
+        conn.sock.onerror = conn.on_error;
     },
 
     on_open: function(m) {
         messages.push(Message("System", "Connected to server"));
         conn.send_msg("Hello, I am a client!");
+    },
+
+    on_close: function(m) {
+        messages.push(Message("System", "Connection was closed"));
+        setTimeout(conn.connect, 5000);
+    },
+
+    on_error: function(m) {
+        messages.push(Message("System", "Received an error event from the websocket, something went wrong"));
+        console.log(m);
     },
 
     draw_msg: function(user, text) {                                      
