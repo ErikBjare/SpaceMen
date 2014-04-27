@@ -99,9 +99,9 @@ function create() {
     });
 }
 
-function scale_bgs(factor) {
+/*function scale_bgs(factor) {
     for(i = 0; i<bgs.length; i++) {
-        factor = bgs[i].scale.x/factor
+        factor = factor/bgs[i].scale.x
         bgs[i].scale.x = factor
         bgs[i].scale.y = factor
         scale_x = bgs[i].x*factor
@@ -116,7 +116,23 @@ function scale_bgs(factor) {
         diff_w = scale_h-bgs[i].height
         bgs[i].width += diff_h
         bgs[i].height += diff_w
+    }
+}*/
 
+function scale_bgs(factor) {
+    for(i=0; i<bgs.length; i++) {
+        factor = factor/bgs[i].tileScale.x
+        console.log(factor)
+        bgs[i].tileScale.x = factor;
+        bgs[i].tileScale.y = factor;
+        x_diff = bgs[i].width * (1-1/factor)
+        y_diff = bgs[i].height * (1-1/factor)
+        console.log(x_diff, y_diff)
+        bgs[i].tilePosition.x += x_diff/2
+        bgs[i].tilePosition.y += y_diff/2
+
+        //bgs[i].width -= x_diff
+        //bgs[i].height -= y_diff
     }
 }
 
